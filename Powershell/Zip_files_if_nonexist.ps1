@@ -5,7 +5,7 @@ PowerShell Version: 5.1
 #>
 $dateStart=(Get-Date).AddDays(-5)
 $fileList = Get-ChildItem -Path D:\temp\*.txt | Where-Object {$_.LastWriteTime -gt $dateStart}
-$fileList | Foreach{
+$fileList | ForEach-Object{
 	$fileToCheck = "C:\PathTo\Back\"+$_.LastWriteTime.ToString("yyyyMMdd")+".7z"
 	$secret= "mySecret"
 	if (![System.IO.File]::Exists($fileToCheck)){
