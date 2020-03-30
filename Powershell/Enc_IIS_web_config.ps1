@@ -18,14 +18,18 @@ $sections = @("connectionStrings","appSettings")
 #Encrypt All Web.config of IIS Sites
 Get-IISSite | ForEach-Object {
     $webFilePath = (Get-IISSite $_.Name).Applications["/"].VirtualDirectories["/"].PhysicalPath
-    $sections | ForEach-Object {
-        EncWcSection $regiis $_ $webFilePath
-    }
+	if (Test-Path -path "$($webFilePath)\web.config"){
+        $sections | ForEach-Object {
+            EncWcSection $regiis $_ $webFilePath
+        }
+	}
 }
 
 Get-WebApplication | ForEach-Object {
     $webFilePath = (Get-WebApplication -name "$($_.Name)" ).PhysicalPath
-    $sections | ForEach-Object {
-        EncWcSection $regiis $_ $webFilePath
-    }
+	if (Test-Path -path "$($webFilePath)\web.config"){
+        $sections | ForEach-Object {
+            EncWcSection $regiis $_ $webFilePath
+        }
+	}
 }
