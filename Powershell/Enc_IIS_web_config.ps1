@@ -14,7 +14,7 @@ function EncWcSection($regiis, $section, $webFilePath){
 #Path of aspnet_regiis.exe (.NET 4)
 $regiis = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_regiis.exe"
 #Target section names
-$sections = @("connectionStrings","appSettings","sessionState")
+$sections = @("connectionStrings","appSettings","system.web/sessionState")
 #Encrypt All Web.config of IIS Sites
 Get-IISSite | ForEach-Object {
     $webFilePath = (Get-IISSite $_.Name).Applications["/"].VirtualDirectories["/"].PhysicalPath
