@@ -15,9 +15,9 @@ function EncWcSection($regiis, $section, $webFilePath,$logfile){
 #Path of aspnet_regiis.exe (.NET 4)
 $regiis = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_regiis.exe"
 #Target section names
-$sections = @("connectionStrings","appSettings","sessionState")
+$sections = @("connectionStrings","appSettings","system.web/sessionState")
 #Output log
-$logfile = "iisenc_"+$(Get-Date).AddDays(-5).ToString("yyyyMMddHHmmss")+".log"
+$logfile = "iisenc_"+$(Get-Date).ToString("yyyyMMddHHmmss")+".log"
 #Encrypt All Web.config of IIS Sites
 Get-WebSite | ForEach-Object {
 	$webfilePath = $_.PhysicalPath 
